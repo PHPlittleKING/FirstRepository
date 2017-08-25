@@ -1,0 +1,12 @@
+<?php 
+
+	//管理员日志
+	function admin_log($logInfo){
+		$adminInfo = session('isLogined');
+		$logData = ['log_time'=>time(),'admin_id'=>$adminInfo['admin_id'],'log_info'=>$logInfo,'ip_address'=>get_client_ip()];
+		M('AdminLog')->add($logData);
+
+		
+	}
+
+ ?> 

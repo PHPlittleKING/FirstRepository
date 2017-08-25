@@ -1,0 +1,118 @@
+<style type="text/css">
+    *{
+        margin: 0px;
+        padding: 0px;
+        /*align: center;*/
+        /*margin-left: -20px;*/
+        /*list-style: none;*/
+    }
+
+    .row
+    {
+        width: 1400px;
+    }
+
+    .col-md-62
+    {
+        width: 400px;
+        float: left;
+        margin-left: 20px;
+    }
+
+    .articleContent{
+        width: 398px;
+        height: 27px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .pic{
+        height: 223.44px;
+        width: 398px;
+    }
+
+    .tags li{
+        margin-top:5px;
+        width: 73px;
+        /*height: 45px;*/
+        /*float: bottom;*/
+    }
+
+    .a{
+        margin-left: 10px;
+        /*list-style: none;*/
+    }
+
+    .art{
+        margin-left: 10px;
+    }
+
+</style>
+<div class="widewrapper main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <foreach name="list" item="val">
+                <div class="row2">
+                    <div class="col-md-62 col-sm-62">
+                        <article class=" blog-teaser">
+                            <header>
+                                <img class="pic" src="img/<?php echo mt_rand(1,12) ?>.jpg" alt="">
+                                <h3><a href="{:U('Index/single')}?id={$val.article_id}">{$val.article_title}</a></h3>
+                                <span class="meta">{$val.article_time}, {$val.article_user}</span>
+                                <hr>
+                            </header>
+                            <div class="body articleContent">{$val.article_content}</div>
+                            <div class="clearfix">
+                                <a href="{:U('Index/single')}?id={$val.article_id}" class="btn btn-clean-one">Read more</a>
+                            </div>
+                        </article>
+                    </div>  
+                </div>
+                </foreach>
+            </div>
+          <aside class="col-md-4 blog-aside">
+                    
+                    <div class="aside-widget">
+                    <header>
+                        <h3>Friendly,link</h3>
+                    </header>
+                    <div class="body">
+                    <foreach name="linkList" item="val">
+                        <ul class="clean-list" id="link">
+                            <li><a href="{$val.link_address}" target="_blank" class="a">{$val.link_address}</a></li>
+                        </ul>
+                    </foreach>
+                    </div>
+                </div>
+                
+                    <div class="aside-widget">
+                        <header>
+                            <h3>All Article</h3>
+                        </header>
+                        <div class="body">
+                            <foreach name="articleList" item="val">
+                                <ul class="clean-list">
+                                    <li><a href="{$val.article_title}" target="_blank" class="art">{$val.article_title}</a></li>
+                                </ul>
+                            </foreach>
+                        </div>
+                    </div>
+
+                  <div class="aside-widget">
+                    <header>
+                        <h3>Tags</h3>
+                    </header>
+                    <foreach name="labelList" item="value">
+                        <div class="body2">
+                            <ul class="tags">
+                                <li><a href="#">{$value.label_name}</a></li>                           
+                            </ul>
+                        </div>
+                    </foreach>
+                </div> 
+                </aside>
+        </div>
+    </div>
+</div> 

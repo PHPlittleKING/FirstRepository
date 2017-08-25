@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="__PUBLIC__/">
+    <meta charset="utf-8">
+    <title>Single Post</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+   <link rel="stylesheet" href="css/style1.css" id="theme-styles">
+
+    <!--[if lt IE 9]>      
+        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+<style type="text/css">
+
+    #img{
+        width:750px; 
+        height:421.88px;
+    }
+
+</style>
+    
+</head>
+<body>
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <article class="blog-post">
+                        <header>
+                            <div class="lead-image">
+                                <img src="img/<?php echo mt_rand(1,9) ?>.jpg" alt="" class="img-responsive" id='img'>  
+                            </div>
+                        </header>
+                        <div class="body">
+                            <h1>{$data.article_title}</h1>
+                            <div class="meta">
+                                <i class="fa fa-user"></i>{$data.article_user}<i class="fa fa-calendar"></i>{$data.article_time}<i class="fa fa-comments"></i><span class="data"><a href="#comments">&nbsp;&nbsp;浏览量</a></span><span>&nbsp;&nbsp;{$data.see_count}</span>
+                            </div>
+                            <p>{$data.article_content}</p>
+                        </div>
+                    </article>
+                        
+                    <aside class="social-icons clearfix">
+                        <h3>Share on </h3> 
+                        <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-google"></i></a>
+                    </aside>
+
+                    <aside class="comments" id="comments">
+                        <hr>
+
+                   <div id="SOHUCS" sid="{}"></div>
+                    <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js" ></script>
+                    <script type="text/javascript">
+                    window.changyan.api.config({
+                    appid: 'cytb0Qgzb',
+                    conf: 'prod_3b74e216d378562a14764d92d3287fd6'
+                    });
+                    </script>
+                     
+                    </aside>
+                </div>
+                <aside class="col-md-4 blog-aside">
+                    
+                    <div class="aside-widget">
+                    <header>
+                        <h3>Friendly,link</h3>
+                    </header>
+                    <div class="body">
+                    <foreach name="linkList" item="val">
+                        <ul class="clean-list" id="link">
+                            <li><a href="{$val.link_address}" target="_blank">{$val.link_address}</a></li>
+                        </ul>
+                    </foreach>
+                    </div>
+                </div>
+                
+                    <div class="aside-widget">
+                        <header>
+                            <h3>All Article</h3>
+                        </header>
+                        <div class="body">
+                            <foreach name="articleList" item="val">
+                                <ul class="clean-list">
+                                    <li>{$val.article_title}</li>
+                                </ul>
+                            </foreach>
+                        </div>
+                    </div>
+                 <div class="aside-widget">
+                    <header>
+                        <h3>Tags</h3>
+                    </header>
+                    <foreach name="labelList" item="value">
+                        <div>
+                            <ul class="tags">
+                                <li><a href="#">{$value.label_name}</a></li>                           
+                            </ul>
+                        </div>
+                    </foreach>
+                </div> 
+                    
+                </aside>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script type="text/javascript">
+    // alert(1);
+    var id = {$id};
+        $.get('/index.php/Index/see',{'id':id},function(result){
+            // alert(2);
+            console.log(result);
+            // alert(result);
+        },'json')
+    </script>
+</body>
+</html>
